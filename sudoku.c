@@ -97,6 +97,23 @@ int is_valid(Node* n){
 }
 
 void appendToList(List* list, Node* data) {
+    ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (list->head == NULL) {
+        list->head = newNode;
+    } else {
+        ListNode* current = list->head;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        current->next = newNode;
+    }
+}
+
+/*
+void appendToList(List* list, Node* data) {
   
     ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
     newNode->data = data;
@@ -108,7 +125,7 @@ void appendToList(List* list, Node* data) {
         while (current->next != NULL) current = current->next;
         current->next = newNode;
     }
-}
+}*/
 
 void freeList(List* list) {
   
