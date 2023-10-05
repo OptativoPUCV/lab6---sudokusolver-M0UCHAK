@@ -150,7 +150,7 @@ List* get_adj_nodes(Node* n) {
             }
         }
     }
-
+     printf("Tamaño de la lista: %d\n", getListSize(list));
     return list;
 }
 
