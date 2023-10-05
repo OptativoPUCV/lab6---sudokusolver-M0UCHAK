@@ -179,3 +179,15 @@ Thu 05 Oct 2023 11:22:22 PM UTC:
  tests:  5|3
 total_score: 35/70
 8c37df9
+Thu 05 Oct 2023 11:24:48 PM UTC: 
+ sudoku.c | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+In file included from test.c:5:
+sudoku.c: In function ‘get_adj_nodes’:
+sudoku.c:147:40: error: implicit declaration of function ‘getListSize’; did you mean ‘get_size’? [-Werror=implicit-function-declaration]
+  147 |     printf("Tamaño de la lista: %d\n", getListSize(list));
+      |                                        ^~~~~~~~~~~
+      |                                        get_size
+cc1: all warnings being treated as errors
+Compilation failed
+7960f85
