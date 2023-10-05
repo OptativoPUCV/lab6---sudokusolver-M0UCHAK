@@ -133,7 +133,6 @@ int getListSize(List* list) {
     return size;
 }
 
-
 List* get_adj_nodes(Node* n) {
     List* list = createList();
 
@@ -146,19 +145,16 @@ List* get_adj_nodes(Node* n) {
 
                     if (is_valid(newNode)) {
                         appendToList(list, newNode);
-                    } else {
-                        free(newNode);
                     }
                 }
             }
         }
     }
 
-    // Agrega un mensaje de depuración para verificar el tamaño de la lista
-    printf("Tamaño de la lista: %d\n", getListSize(list));
-
     return list;
 }
+
+
 
 
 /*
