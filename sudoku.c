@@ -58,32 +58,31 @@ int is_valid(Node* n){
     return 1;
 }
 
-
 void appendToList(List* list, Node* data) {
+  
     ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
     newNode->data = data;
     newNode->next = NULL;
 
-    if (list->head == NULL) {
-        list->head = newNode;
-    } else {
+    if (list->head == NULL) list->head = newNode;
+    else {
         ListNode* current = list->head;
-        while (current->next != NULL) {
-            current = current->next;
-        }
+        while (current->next != NULL) current = current->next;
         current->next = newNode;
     }
 }
 
 void freeList(List* list) {
-    ListNode* current = list->head;
-    while (current != NULL) {
-        ListNode* next = current->next;
-        free(current->data);
-        free(current);
-        current = next;
-    }
-    free(list);
+  
+  ListNode* current = list->head;
+  
+  while (current != NULL) {
+    ListNode* next = current->next;
+    free(current->data);
+    free(current);
+    current = next;
+  }
+  free(list);
 }
 
 List* get_adj_nodes(Node* n) {
