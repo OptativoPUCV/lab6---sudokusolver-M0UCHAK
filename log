@@ -49,3 +49,8 @@ sudoku.c:82:12: error: returning ‘Node **’ from a function with incompatible
 cc1: all warnings being treated as errors
 Compilation failed
 1565058
+Thu 05 Oct 2023 08:36:15 AM UTC: 
+ sudoku.c | 31 ++++++++++++++++++++++---------
+ 1 file changed, 22 insertions(+), 9 deletions(-)
+ tests:  0|0
+ccbc2dd
