@@ -86,11 +86,13 @@ List* get_adj_nodes(Node* n) {
     }
 
     for (int i = 0; i < list->size; i++) {
-        free(list->items[i]);
+        if (list->items[i] != NULL) {
+            free(list->items[i]);
+        }
     }
 
     free(list->items);
-    free(list); 
+    free(list);
 
     return list;
 }
