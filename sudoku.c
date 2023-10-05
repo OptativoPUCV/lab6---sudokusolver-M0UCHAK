@@ -55,7 +55,19 @@ void print_node(Node* n){
 
 int is_valid(Node* n){
 
-    return 1;
+  for(int row = 0; row < 9;row++){
+    int used[10] = {0};
+    for(int col = 0; col < 9; col++){
+      int num = n -> sudo[row][col];
+      if(num == 0) continue;
+      if(used[num] == 1) return 0;
+      used[num] = 1;
+    }
+  }
+  
+
+  
+  return 1;
 }
 
 void appendToList(List* list, Node* data) {
