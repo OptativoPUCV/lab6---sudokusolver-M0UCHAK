@@ -125,3 +125,27 @@ sudoku.c:113:6: note: previous definition of ‘freeList’ with type ‘void(Li
       |      ^~~~~~~~
 Compilation failed
 e54242f
+Thu 05 Oct 2023 11:15:16 PM UTC: 
+ sudoku.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+In file included from test.c:5:
+sudoku.c:126:5: error: redefinition of ‘is_valid’
+  126 | int is_valid(Node* n){
+      |     ^~~~~~~~
+sudoku.c:56:5: note: previous definition of ‘is_valid’ with type ‘int(Node *)’
+   56 | int is_valid(Node* n){
+      |     ^~~~~~~~
+sudoku.c:164:6: error: redefinition of ‘appendToList’
+  164 | void appendToList(List* list, Node* data) {
+      |      ^~~~~~~~~~~~
+sudoku.c:99:6: note: previous definition of ‘appendToList’ with type ‘void(List *, Node *)’ {aka ‘void(struct List *, Node *)’}
+   99 | void appendToList(List* list, Node* data) {
+      |      ^~~~~~~~~~~~
+sudoku.c:178:6: error: redefinition of ‘freeList’
+  178 | void freeList(List* list) {
+      |      ^~~~~~~~
+sudoku.c:113:6: note: previous definition of ‘freeList’ with type ‘void(List *)’ {aka ‘void(struct List *)’}
+  113 | void freeList(List* list) {
+      |      ^~~~~~~~
+Compilation failed
+c0455e5

@@ -158,7 +158,6 @@ int is_valid(Node* n){
             }
         }
     }
-  
   return 1;
 }
 
@@ -190,27 +189,31 @@ void freeList(List* list) {
 }
 
 List* get_adj_nodes(Node* n) {
-  
-  List* list = createList();
+    List* list = createList();
 
-  int row, col;
-  for (row = 0; row < 9; row++) {
-    for (col = 0; col < 9; col++) {
-      if (n->sudo[row][col] == 0) {
-        for (int val = 1; val <= 9; val++) {
-          Node* newNode = copy(n);
-          newNode->sudo[row][col] = val;
-          
-          if (is_valid(newNode)) appendToList(list, newNode);
-          else free(newNode); 
+    int row, col;
+    for (row = 0; row < 9; row++) {
+        for (col = 0; col < 9; col++) {
+            if (n->sudo[row][col] == 0) {
+                for (int val = 1; val <= 9; val++) {
+                    Node* newNode = copy(n);
+                    newNode->sudo[row][col] = val;
+                    if (is_valid(newNode)) {
+                        appendToList(list, newNode);
+                    } else {
+                        free(newNode);
+                    }
+                }
+                break;
+            }
         }
-        break;
-      }
+        if (col < 9) {
+            break;
+        }
     }
-    if (col < 9) break;
-  }
-  return list;
+    return list;
 }
+
 
 int is_final(Node* n){
     return 0;
