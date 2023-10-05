@@ -146,32 +146,6 @@ List* get_adj_nodes(Node* n) {
     return list;
 }
 
-
-
-/*
-List* get_adj_nodes(Node* n) {
-  
-  List* list = createList();
-
-  int row, col;
-  for (row = 0; row < 9; row++) {
-    for (col = 0; col < 9; col++) {
-      if (n->sudo[row][col] == 0) {
-        for (int val = 1; val <= 9; val++) {
-          Node* newNode = copy(n);
-          newNode->sudo[row][col] = val;
-          
-          if (is_valid(newNode)) appendToList(list, newNode);
-          else free(newNode); 
-        }
-        break;
-      }
-    }
-    if (col < 9) break;
-  }
-  return list;
-}*/
-
 int is_final(Node* n){
     return 0;
 }
@@ -182,7 +156,7 @@ Node* DFS(Node* initial, int* cont){
 
 
 
-/*
+
 int main( int argc, char *argv[] ){
 
   Node* initial= read_file("s12a.txt");;
@@ -193,4 +167,4 @@ int main( int argc, char *argv[] ){
   print_node(final);
 
   return 0;
-}*/
+}
