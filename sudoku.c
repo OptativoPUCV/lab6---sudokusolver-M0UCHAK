@@ -53,6 +53,50 @@ void print_node(Node* n){
     printf("\n");
 }
 
+int is_valid(Node* n) {
+    // Verificar filas y columnas
+    for (int row = 0; row < 9; row++) {
+        int used_row[10] = {0};
+        int used_col[10] = {0};
+
+        for (int col = 0; col < 9; col++) {
+            int num_row = n->sudo[row][col];
+            int num_col = n->sudo[col][row];
+
+            // Verificar fila
+            if (num_row != 0) {
+                if (used_row[num_row] == 1) return 0;
+                used_row[num_row] = 1;
+            }
+
+            // Verificar columna
+            if (num_col != 0) {
+                if (used_col[num_col] == 1) return 0;
+                used_col[num_col] = 1;
+            }
+        }
+    }
+
+    // Verificar submatrices de 3x3
+    for (int k = 0; k < 9; k++) {
+        int used[10] = {0};
+
+        for (int p = 0; p < 9; p++) {
+            int i = 3 * (k / 3) + (p / 3);
+            int j = 3 * (k % 3) + (p % 3);
+            int num = n->sudo[i][j];
+
+            if (num != 0) {
+                if (used[num] == 1) return 0;
+                used[num] = 1;
+            }
+        }
+    }
+
+    return 1;
+}
+
+/*
 int is_valid(Node* n){
 
   for(int row = 0; row < 9;row++){
@@ -94,7 +138,7 @@ int is_valid(Node* n){
     }
   }
   return 1;
-}
+}*/
 
 
 void appendToList(List* list, Node* data) {
