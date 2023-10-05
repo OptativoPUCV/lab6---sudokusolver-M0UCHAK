@@ -13,3 +13,11 @@ Thu 05 Oct 2023 08:27:59 AM UTC:
  1 file changed, 26 insertions(+), 1 deletion(-)
  tests:  0|0
 40c8709
+Thu 05 Oct 2023 08:28:25 AM UTC: 
+ sudoku.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/ccPJEidH.o: in function `createList':
+list.c:(.text+0x10): multiple definition of `createList'; /tmp/cc540fUX.o:test.c:(.text+0x180): first defined here
+collect2: error: ld returned 1 exit status
+Compilation failed
+ae2ec72

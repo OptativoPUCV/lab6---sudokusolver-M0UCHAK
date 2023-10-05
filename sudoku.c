@@ -54,6 +54,13 @@ int is_valid(Node* n){
     return 1;
 }
 
+List* createList() {
+    List* list = (List*)malloc(sizeof(List));
+    list->items = NULL;
+    list->size = 0;
+    list->capacity = 0;
+    return list;
+}
 
 void addNodeToList(List* list, Node* node) {
     if (list->size >= list->capacity) {
