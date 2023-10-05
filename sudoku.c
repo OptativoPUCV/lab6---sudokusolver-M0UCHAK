@@ -65,8 +65,15 @@ int is_valid(Node* n){
     }
   }
   
-
-  
+  for(int col = 0; col < 9; col++){
+    int used[10] = {0};
+    for(int row = 0; row < 9; row++){
+      int num = n -> sudo[row][col];
+      if(num == 0) continue;
+      if(used[num] == 1) return 0;
+      used[num] = 1;
+    }
+  }
   return 1;
 }
 
