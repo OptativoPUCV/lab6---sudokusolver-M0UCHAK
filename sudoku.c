@@ -57,8 +57,10 @@ int is_valid(Node* n){
 
   for(int row = 0; row < 9;row++){
     int used[10] = {0};
+    
     for(int col = 0; col < 9; col++){
       int num = n -> sudo[row][col];
+      
       if(num == 0) continue;
       if(used[num] == 1) return 0;
       used[num] = 1;
@@ -67,8 +69,10 @@ int is_valid(Node* n){
   
   for(int col = 0; col < 9; col++){
     int used[10] = {0};
+    
     for(int row = 0; row < 9; row++){
       int num = n -> sudo[row][col];
+      
       if(num == 0) continue;
       if(used[num] == 1) return 0;
       used[num] = 1;
@@ -76,19 +80,19 @@ int is_valid(Node* n){
   }
 
   for (int startRow = 0; startRow < 9; startRow += 3) {
-        for (int startCol = 0; startCol < 9; startCol += 3) {
-            int used[10] = {0};
-            for (int row = startRow; row < startRow + 3; row++) {
-                for (int col = startCol; col < startCol + 3; col++) {
-                    int num = n->sudo[row][col];
-                    if (num == 0) continue; 
-                    if (used[num] == 1) return 0;
-                    used[num] = 1;
-                }
-            }
+    for (int startCol = 0; startCol < 9; startCol += 3) {
+      int used[10] = {0};
+      
+      for (int row = startRow; row < startRow + 3; row++) {
+        for (int col = startCol; col < startCol + 3; col++) {
+          int num = n->sudo[row][col];
+          if (num == 0) continue; 
+          if (used[num] == 1) return 0;
+          used[num] = 1;
         }
+      }
     }
-  
+  }
   return 1;
 }
 
@@ -141,28 +145,7 @@ List* get_adj_nodes(Node* n) {
   }
   return list;
 }
-/*
-List* get_adj_nodes(Node* n) {
-  
-  List* list = createList();
-    
-  int row, col;
-  for (row = 0; row < 9; row++) {
-    for (col = 0; col < 9; col++) {
-      if (n->sudo[row][col] == 0) {
-        for (int val = 1; val <= 9; val++) {
-          Node* newNode = copy(n);
-          newNode->sudo[row][col] = val;
-          appendToList(list, newNode);
-        }
-        break;
-      }
-    }
-    if (col < 9) break;
-  }
-  return list;
-}
-*/
+
 int is_final(Node* n){
     return 0;
 }
