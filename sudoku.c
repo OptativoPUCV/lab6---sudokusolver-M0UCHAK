@@ -145,7 +145,7 @@ List* get_adj_nodes(Node* n) {
                     newNode->sudo[row][col] = val;
 
                     //printf("Generando nodo adjacente:\n");
-                    print_node(newNode); // Imprime el nuevo nodo generado
+                    //print_node(newNode); // Imprime el nuevo nodo generado
 
                     if (is_valid(newNode)) {
                         printf("Nodo válido. Agregando a la lista.\n");
