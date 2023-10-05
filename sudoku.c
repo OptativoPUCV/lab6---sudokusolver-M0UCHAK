@@ -49,7 +49,7 @@ int is_valid(Node* n){
     return 1;
 }
 
-Node** get_adj_nodes(Node* n) {
+List* get_adj_nodes(Node* n) {
     Node** adj_nodes = (Node**)malloc(9 * sizeof(Node*));
 
     int row = -1, col = -1;

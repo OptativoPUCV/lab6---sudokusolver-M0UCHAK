@@ -38,3 +38,14 @@ test.c:155:17: error: initialization of ‘List *’ from incompatible pointer t
 cc1: all warnings being treated as errors
 Compilation failed
 772a712
+Thu 05 Oct 2023 08:31:51 AM UTC: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:
+sudoku.c: In function ‘get_adj_nodes’:
+sudoku.c:82:12: error: returning ‘Node **’ from a function with incompatible return type ‘List *’ [-Werror=incompatible-pointer-types]
+   82 |     return adj_nodes;
+      |            ^~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+1565058
