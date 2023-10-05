@@ -87,26 +87,24 @@ void freeList(List* list) {
 }
 
 List* get_adj_nodes(Node* n) {
-    List* list = createList();
+  
+  List* list = createList();
     
-    int row, col;
-    for (row = 0; row < 9; row++) {
-        for (col = 0; col < 9; col++) {
-            if (n->sudo[row][col] == 0) {
-                for (int val = 1; val <= 9; val++) {
-                    Node* newNode = copy(n);
-                    newNode->sudo[row][col] = val;
-                    appendToList(list, newNode);
-                }
-                break;
-            }
+  int row, col;
+  for (row = 0; row < 9; row++) {
+    for (col = 0; col < 9; col++) {
+      if (n->sudo[row][col] == 0) {
+        for (int val = 1; val <= 9; val++) {
+          Node* newNode = copy(n);
+          newNode->sudo[row][col] = val;
+          appendToList(list, newNode);
         }
-        if (col < 9) {
-            break;
-        }
+        break;
+      }
     }
-
-    return list;
+    if (col < 9) break;
+  }
+  return list;
 }
 
 int is_final(Node* n){
