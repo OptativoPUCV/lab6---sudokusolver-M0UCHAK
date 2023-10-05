@@ -144,14 +144,9 @@ List* get_adj_nodes(Node* n) {
                     Node* newNode = copy(n);
                     newNode->sudo[row][col] = val;
 
-                    //printf("Generando nodo adjacente:\n");
-                    //print_node(newNode); // Imprime el nuevo nodo generado
-
                     if (is_valid(newNode)) {
-                        printf("Nodo válido. Agregando a la lista.\n");
                         appendToList(list, newNode);
                     } else {
-                        printf("Nodo inválido. Liberando memoria.\n");
                         free(newNode);
                     }
                 }
@@ -159,10 +154,9 @@ List* get_adj_nodes(Node* n) {
         }
     }
 
-    printf("Tamaño de la lista: %d\n", getListSize(list)); // Verifica el tamaño de la lista
-
     return list;
 }
+
 
 
 
