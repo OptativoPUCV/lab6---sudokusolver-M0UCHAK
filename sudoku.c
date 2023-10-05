@@ -18,6 +18,12 @@ Node* copy(Node* n){
     return new;
 }
 
+typedef struct List{
+    Node** items;
+    int size;
+    int capacity;
+} List;
+
 Node* read_file (char* file_name){
   Node* n = createNode();
   FILE* file = fopen (file_name, "r");
