@@ -18,10 +18,13 @@ Node* copy(Node* n){
     return new;
 }
 
+typedef struct ListNode {
+    Node* data;
+    struct ListNode* next;
+} ListNode;
+
 typedef struct List{
-    Node** items;
-    int size;
-    int capacity;
+    ListNode* head;
 } List;
 
 
@@ -56,47 +59,55 @@ int is_valid(Node* n){
 }
 
 
-void addNodeToList(List* list, Node* node) {
-    if (list->size >= list->capacity) {
-        list->capacity += 10;
-        list->items = (Node**)realloc(list->items, list->capacity * sizeof(Node*));
+void appendToList(List* list, Node* data) {
+    ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (list->head == NULL) {
+        list->head = newNode;
+    } else {
+        ListNode* current = list->head;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        current->next = newNode;
     }
-    list->items[list->size++] = node;
+}
+
+void freeList(List* list) {
+    ListNode* current = list->head;
+    while (current != NULL) {
+        ListNode* next = current->next;
+        free(current->data);
+        free(current);
+        current = next;
+    }
+    free(list);
 }
 
 List* get_adj_nodes(Node* n) {
     List* list = createList();
-
-    int row = -1, col = -1;
-    for (int i = 0; i < 9 && row == -1; i++) {
-        for (int j = 0; j < 9 && col == -1; j++) {
-            if (n->sudo[i][j] == 0) {
-                row = i;
-                col = j;
+    
+    int row, col;
+    for (row = 0; row < 9; row++) {
+        for (col = 0; col < 9; col++) {
+            if (n->sudo[row][col] == 0) {
+                for (int val = 1; val <= 9; val++) {
+                    Node* newNode = copy(n);
+                    newNode->sudo[row][col] = val;
+                    appendToList(list, newNode);
+                }
+                break;
             }
         }
-    }
-
-    if (row != -1 && col != -1) {
-        for (int num = 1; num <= 9; num++) {
-            Node* new_node = copy(n);
-            new_node->sudo[row][col] = num;
-            addNodeToList(list, new_node);
+        if (col < 9) {
+            break;
         }
     }
-
-    for (int i = 0; i < list->size; i++) {
-        if (list->items[i] != NULL) {
-            free(list->items[i]);
-        }
-    }
-
-    free(list->items);
-    free(list);
 
     return list;
 }
-
 
 int is_final(Node* n){
     return 0;
