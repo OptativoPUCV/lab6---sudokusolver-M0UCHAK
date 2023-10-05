@@ -123,6 +123,17 @@ void freeList(List* list) {
   free(list);
 }
 
+int getListSize(List* list) {
+    int size = 0;
+    ListNode* current = list->head;
+    while (current != NULL) {
+        size++;
+        current = current->next;
+    }
+    return size;
+}
+
+
 List* get_adj_nodes(Node* n) {
     List* list = createList();
 

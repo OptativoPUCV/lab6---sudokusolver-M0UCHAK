@@ -191,3 +191,9 @@ sudoku.c:147:40: error: implicit declaration of function ‘getListSize’; did 
 cc1: all warnings being treated as errors
 Compilation failed
 7960f85
+Thu 05 Oct 2023 11:28:48 PM UTC: 
+ sudoku.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ tests:  5|3
+total_score: 35/70
+6fff0a0
