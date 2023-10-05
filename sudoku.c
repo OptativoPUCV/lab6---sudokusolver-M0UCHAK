@@ -96,23 +96,7 @@ int is_valid(Node* n){
   return 1;
 }
 
-void appendToList(List* list, Node* data) {
-    ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
-    newNode->data = data;
-    newNode->next = NULL;
 
-    if (list->head == NULL) {
-        list->head = newNode;
-    } else {
-        ListNode* current = list->head;
-        while (current->next != NULL) {
-            current = current->next;
-        }
-        current->next = newNode;
-    }
-}
-
-/*
 void appendToList(List* list, Node* data) {
   
     ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
@@ -125,7 +109,7 @@ void appendToList(List* list, Node* data) {
         while (current->next != NULL) current = current->next;
         current->next = newNode;
     }
-}*/
+}
 
 void freeList(List* list) {
   
@@ -160,16 +144,26 @@ List* get_adj_nodes(Node* n) {
                     Node* newNode = copy(n);
                     newNode->sudo[row][col] = val;
 
+                    printf("Generando nodo adjacente:\n");
+                    print_node(newNode); // Imprime el nuevo nodo generado
+
                     if (is_valid(newNode)) {
+                        printf("Nodo válido. Agregando a la lista.\n");
                         appendToList(list, newNode);
+                    } else {
+                        printf("Nodo inválido. Liberando memoria.\n");
+                        free(newNode);
                     }
                 }
             }
         }
     }
-     printf("Tamaño de la lista: %d\n", getListSize(list));
+
+    printf("Tamaño de la lista: %d\n", getListSize(list)); // Verifica el tamaño de la lista
+
     return list;
 }
+
 
 
 
