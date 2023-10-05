@@ -55,11 +55,36 @@ int is_valid(Node* n){
 }
 
 
-List* get_adj_nodes(Node* n){
-    List* list=createList();
-    return list;
+void addNodeToList(List* list, Node* node) {
+    if (list->size >= list->capacity) {
+        list->capacity += 10;
+        list->items = (Node**)realloc(list->items, list->capacity * sizeof(Node*));
+    }
+    list->items[list->size++] = node;
 }
 
+List* get_adj_nodes(Node* n) {
+    List* list = createList();
+
+    int row = -1, col = -1;
+    for (int i = 0; i < 9 && row == -1; i++) {
+        for (int j = 0; j < 9 && col == -1; j++) {
+            if (n->sudo[i][j] == 0) {
+                row = i;
+                col = j;
+            }
+        }
+    }
+
+    if (row != -1 && col != -1) {
+        for (int num = 1; num <= 9; num++) {
+            Node* new_node = copy(n);
+            new_node->sudo[row][col] = num;
+            addNodeToList(list, new_node);
+        }
+    }
+    return list;
+}
 
 int is_final(Node* n){
     return 0;
