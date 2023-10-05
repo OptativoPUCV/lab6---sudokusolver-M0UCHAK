@@ -21,3 +21,20 @@ list.c:(.text+0x10): multiple definition of `createList'; /tmp/cc540fUX.o:test.c
 collect2: error: ld returned 1 exit status
 Compilation failed
 ae2ec72
+Thu 05 Oct 2023 08:31:25 AM UTC: 
+ sudoku.c | 40 +++++++++++++++-------------------------
+ 1 file changed, 15 insertions(+), 25 deletions(-)
+test.c: In function ‘adj_test1’:
+test.c:62:17: error: initialization of ‘List *’ from incompatible pointer type ‘Node **’ [-Werror=incompatible-pointer-types]
+   62 |     List* adj = get_adj_nodes(initial);
+      |                 ^~~~~~~~~~~~~
+test.c:95:9: error: assignment to ‘List *’ from incompatible pointer type ‘Node **’ [-Werror=incompatible-pointer-types]
+   95 |     adj = get_adj_nodes(initial);
+      |         ^
+test.c: In function ‘test_mod_adj’:
+test.c:155:17: error: initialization of ‘List *’ from incompatible pointer type ‘Node **’ [-Werror=incompatible-pointer-types]
+  155 |     List* adj = get_adj_nodes(initial);
+      |                 ^~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+772a712

@@ -18,11 +18,6 @@ Node* copy(Node* n){
     return new;
 }
 
-typedef struct List{
-    Node** items;
-    int size;
-    int capacity;
-} List;
 
 Node* read_file (char* file_name){
   Node* n = createNode();
@@ -54,24 +49,8 @@ int is_valid(Node* n){
     return 1;
 }
 
-List* createList() {
-    List* list = (List*)malloc(sizeof(List));
-    list->items = NULL;
-    list->size = 0;
-    list->capacity = 0;
-    return list;
-}
-
-void addNodeToList(List* list, Node* node) {
-    if (list->size >= list->capacity) {
-        list->capacity += 10;
-        list->items = (Node**)realloc(list->items, list->capacity * sizeof(Node*));
-    }
-    list->items[list->size++] = node;
-}
-
-List* get_adj_nodes(Node* n) {
-    List* list = createList();
+Node** get_adj_nodes(Node* n) {
+    Node** adj_nodes = (Node**)malloc(9 * sizeof(Node*));
 
     int row = -1, col = -1;
     for (int i = 0; i < 9 && row == -1; i++) {
@@ -87,11 +66,22 @@ List* get_adj_nodes(Node* n) {
         for (int num = 1; num <= 9; num++) {
             Node* new_node = copy(n);
             new_node->sudo[row][col] = num;
-            addNodeToList(list, new_node);
+            adj_nodes[num - 1] = new_node;
         }
     }
-    return list;
+
+    for (int i = 0; i < 9; i++) {
+        if (adj_nodes[i] == NULL) {
+            break;
+        }
+        free(adj_nodes[i]);
+    }
+
+    free(adj_nodes);
+
+    return adj_nodes;
 }
+
 
 int is_final(Node* n){
     return 0;
