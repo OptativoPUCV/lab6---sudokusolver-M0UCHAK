@@ -158,7 +158,7 @@ Node* DFS(Node* initial, int* cont){
   Stack* stack = createStack();
     push(stack, n);
 
-  while (!isEmpty(Stack)) {
+  while (!is_empty(Stack)) {
     Node* current = pop(Stack);
     (*cont)++; 
 
