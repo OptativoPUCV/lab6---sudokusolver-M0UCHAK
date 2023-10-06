@@ -475,3 +475,17 @@ sudoku.c:167:13: error: implicit declaration of function ‘freeStack’; did yo
 cc1: all warnings being treated as errors
 Compilation failed
 bc95640
+Fri 06 Oct 2023 12:46:05 AM UTC: 
+ sudoku.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+In file included from test.c:5:
+sudoku.c: In function ‘freeStack’:
+sudoku.c:158:22: error: void value not ignored as it ought to be
+  158 |         void* data = pop(stack);
+      |                      ^~~
+sudoku.c: In function ‘DFS’:
+sudoku.c:170:25: error: invalid use of void expression
+  170 |         Node* current = (Node*)pop(stack);
+      |                         ^
+Compilation failed
+fd21081

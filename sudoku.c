@@ -153,6 +153,14 @@ int is_final(Node* n)
   return 1;
 }
 
+void freeStack(Stack* stack) {
+    while (!is_empty(stack)) {
+        void* data = pop(stack);
+        free(data);
+    }
+    free(stack);
+}
+
 Node* DFS(Node* initial, int* cont){
 
   Stack* stack = createStack();
