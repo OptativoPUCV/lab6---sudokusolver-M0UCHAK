@@ -127,7 +127,7 @@ List* get_adj_nodes(Node* n){
     for(int col = 0; col < 9; col++){
       
       if(n->sudo[row][col] == 0){
-        for(int val = 1; val <= 9; num++){
+        for(int val = 1; val <= 9; val++){
           
           Node *adjNodes = copy(n);
           adjNodes->sudo[row][col] = val;
