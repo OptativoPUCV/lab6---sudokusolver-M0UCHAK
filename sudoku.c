@@ -141,8 +141,6 @@ List* get_adj_nodes(Node* n) {
 
                     if (is_valid(newNode)) {
                         appendToList(list, newNode);
-                    } else {
-                        free(newNode);
                     }
                 }
             }
@@ -151,6 +149,7 @@ List* get_adj_nodes(Node* n) {
 
     return list;
 }
+
 
 
 /*
