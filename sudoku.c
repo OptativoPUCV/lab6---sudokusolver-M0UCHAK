@@ -119,35 +119,38 @@ void freeList(List* list) {
   free(list);
 }
 
-int getListSize(List* list) {
-    int size = 0;
-    ListNode* current = list->head;
-    while (current != NULL) {
-        size++;
-        current = current->next;
+List* get_adj_nodes(Node* n){
+  
+  List *list = createList();
+
+  for(int i = 0; i < 9; i++){
+    for(int k = 0; k < 9; k++){
+      
+      if(n->sudo[i][k] == 0){
+        for(int num = 1; num <= 9; num++){
+          
+          Node *adjNodes = copy(n);
+          adjNodes->sudo[i][k] = num;
+          if(is_valid(adjNodes)) pushBack(list, adjNodes); 
+          
+        }          
+        return list;
+      }
     }
-    return size;
+  }
+  return list;
 }
 
-List* get_adj_nodes(Node* n) {
-    List* list = createList();
-
-    for (int row = 0; row < 3; row++) {
-        for (int col = 0; col < 3; col++) {
-            if (n->sudo[row][col] == 0) {
-                for (int val = 1; val <= 3; val++) {
-                    Node* newNode = copy(n);
-                    newNode->sudo[row][col] = val;
-
-                    if (is_valid(newNode)) {
-                        appendToList(list, newNode);
-                    }
-                }
-            }
-        }
+int is_final(Node* n)
+{
+  for(int i = 0; i < 9; i++)
+  {
+    for(int k = 0; k < 9; k++)
+    {
+      if(n->sudo[i][k] == 0) return 0;
     }
-
-    return list;
+  }
+  return 1;
 }
 
 
@@ -212,10 +215,6 @@ List* get_adj_nodes(Node* n) {
 
     return list;
 }*/
-
-int is_final(Node* n){
-    return 0;
-}
 
 Node* DFS(Node* initial, int* cont){
   return NULL;
