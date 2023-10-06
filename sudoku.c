@@ -155,8 +155,8 @@ int is_final(Node* n)
 
 Node* DFS(Node* initial, int* cont){
 
-  while (!isEmpty(stack)) {
-    Node* current = pop(stack);
+  while (!isEmpty(Stack)) {
+    Node* current = pop(Stack);
     (*cont)++; 
 
       if (is_final(current)) return current;
