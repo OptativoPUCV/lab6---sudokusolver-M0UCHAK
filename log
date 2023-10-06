@@ -379,3 +379,25 @@ sudoku.c:159:25: error: expected expression before ‘Stack’
 cc1: all warnings being treated as errors
 Compilation failed
 ba459a1
+Fri 06 Oct 2023 12:39:29 AM UTC: 
+ sudoku.c | 3 +++
+ 1 file changed, 3 insertions(+)
+In file included from test.c:5:
+sudoku.c: In function ‘DFS’:
+sudoku.c:159:17: error: ‘n’ undeclared (first use in this function)
+  159 |     push(stack, n);
+      |                 ^
+sudoku.c:159:17: note: each undeclared identifier is reported only once for each function it appears in
+sudoku.c:161:11: error: implicit declaration of function ‘isEmpty’; did you mean ‘is_empty’? [-Werror=implicit-function-declaration]
+  161 |   while (!isEmpty(Stack)) {
+      |           ^~~~~~~
+      |           is_empty
+sudoku.c:161:19: error: expected expression before ‘Stack’
+  161 |   while (!isEmpty(Stack)) {
+      |                   ^~~~~
+sudoku.c:162:25: error: expected expression before ‘Stack’
+  162 |     Node* current = pop(Stack);
+      |                         ^~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+807e41a
