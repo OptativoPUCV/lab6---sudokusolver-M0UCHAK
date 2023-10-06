@@ -54,57 +54,47 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n) {
+    int used_row[10] = {0};
+    int used_col[10] = {0};
+    int used_subgrid[10] = {0};
+
     for (int row = 0; row < 9; row++) {
-        int used_row[10] = {0};
-        int used_col[10] = {0};
-
         for (int col = 0; col < 9; col++) {
-            int num_row = n->sudo[row][col];
-            int num_col = n->sudo[col][row];
+            int num = n->sudo[row][col];
 
-            if (num_row != 0) {
-                if (used_row[num_row] == 1) return 0;
-                used_row[num_row] = 1;
-            }
+            if (used_row[num] == 1) return 0;
+            used_row[num] = 1;
 
-            if (num_col != 0) {
-                if (used_col[num_col] == 1) return 0;
-                used_col[num_col] = 1;
-            }
-        }
-    }
+            if (used_col[num] == 1) return 0;
+            used_col[num] = 1;
 
-    for (int k = 0; k < 9; k++) {
-        int used[10] = {0};
-
-        for (int p = 0; p < 9; p++) {
-            int i = 3 * (k / 3) + (p / 3);
-            int j = 3 * (k % 3) + (p % 3);
-            int num = n->sudo[i][j];
-
-            if (num != 0) {
-                if (used[num] == 1) return 0;
-                used[num] = 1;
-            }
+            int subgrid_row = 3 * (row / 3);
+            int subgrid_col = 3 * (col / 3);
+            if (used_subgrid[num] == 1) return 0;
+            used_subgrid[num] = 1;
         }
     }
 
     return 1;
 }
 
+
 void appendToList(List* list, Node* data) {
-  
     ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
     newNode->data = data;
     newNode->next = NULL;
 
-    if (list->head == NULL) list->head = newNode;
-    else {
+    if (list->head == NULL) {
+        list->head = newNode;
+    } else {
         ListNode* current = list->head;
-        while (current->next != NULL) current = current->next;
+        while (current->next != NULL) {
+            current = current->next;
+        }
         current->next = newNode;
     }
 }
+
 
 void freeList(List* list) {
   
@@ -117,16 +107,6 @@ void freeList(List* list) {
     current = next;
   }
   free(list);
-}
-
-int getListSize(List* list) {
-    int size = 0;
-    ListNode* current = list->head;
-    while (current != NULL) {
-        size++;
-        current = current->next;
-    }
-    return size;
 }
 
 List* get_adj_nodes(Node* n) {
