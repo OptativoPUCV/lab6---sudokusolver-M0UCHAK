@@ -418,3 +418,16 @@ sudoku.c:162:25: error: expected expression before ‘Stack’
       |                         ^~~~~
 Compilation failed
 c77f8fc
+Fri 06 Oct 2023 12:43:10 AM UTC: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:
+sudoku.c: In function ‘DFS’:
+sudoku.c:161:20: error: expected expression before ‘Stack’
+  161 |   while (!is_empty(Stack)) {
+      |                    ^~~~~
+sudoku.c:162:25: error: expected expression before ‘Stack’
+  162 |     Node* current = pop(Stack);
+      |                         ^~~~~
+Compilation failed
+673f3a9
