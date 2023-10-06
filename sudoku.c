@@ -52,51 +52,59 @@ void print_node(Node* n){
     }
     printf("\n");
 }
+
 int is_valid(Node* n) {
-    int used_row[10] = {0};
-    int used_col[10] = {0};
-    int used_subgrid[10] = {0};
-
     for (int row = 0; row < 9; row++) {
+        int used_row[10] = {0};
+        int used_col[10] = {0};
+
         for (int col = 0; col < 9; col++) {
-            int num = n->sudo[row][col];
+            int num_row = n->sudo[row][col];
+            int num_col = n->sudo[col][row];
 
-            // Verificar fila
-            if (used_row[num] == 1) return 0;
-            used_row[num] = 1;
+            if (num_row != 0) {
+                if (used_row[num_row] == 1) return 0;
+                used_row[num_row] = 1;
+            }
 
-            // Verificar columna
-            if (used_col[num] == 1) return 0;
-            used_col[num] = 1;
+            if (num_col != 0) {
+                if (used_col[num_col] == 1) return 0;
+                used_col[num_col] = 1;
+            }
+        }
+    }
 
-            // Verificar submatriz 3x3
-            if (used_subgrid[num] == 1) return 0;
-            used_subgrid[num] = 1;
+    for (int k = 0; k < 9; k++) {
+        int used[10] = {0};
+
+        for (int p = 0; p < 9; p++) {
+            int i = 3 * (k / 3) + (p / 3);
+            int j = 3 * (k % 3) + (p % 3);
+            int num = n->sudo[i][j];
+
+            if (num != 0) {
+                if (used[num] == 1) return 0;
+                used[num] = 1;
+            }
         }
     }
 
     return 1;
 }
 
-
-
-
 void appendToList(List* list, Node* data) {
+  
     ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
     newNode->data = data;
     newNode->next = NULL;
 
-    if (list->head == NULL) {
-        list->head = newNode;
-    } else {
+    if (list->head == NULL) list->head = newNode;
+    else {
         ListNode* current = list->head;
-        while (current->next != NULL) {
-            current = current->next;
-        }
+        while (current->next != NULL) current = current->next;
         current->next = newNode;
     }
 }
-
 
 void freeList(List* list) {
   
@@ -110,20 +118,29 @@ void freeList(List* list) {
   }
   free(list);
 }
+
+int getListSize(List* list) {
+    int size = 0;
+    ListNode* current = list->head;
+    while (current != NULL) {
+        size++;
+        current = current->next;
+    }
+    return size;
+}
+
 List* get_adj_nodes(Node* n) {
     List* list = createList();
 
-    for (int row = 0; row < 9; row++) {
-        for (int col = 0; col < 9; col++) {
+    for (int row = 0; row < 3; row++) {
+        for (int col = 0; col < 3; col++) {
             if (n->sudo[row][col] == 0) {
-                for (int val = 1; val <= 9; val++) {
+                for (int val = 1; val <= 3; val++) {
                     Node* newNode = copy(n);
                     newNode->sudo[row][col] = val;
 
                     if (is_valid(newNode)) {
                         appendToList(list, newNode);
-                    } else {
-                        free(newNode);
                     }
                 }
             }
@@ -132,7 +149,6 @@ List* get_adj_nodes(Node* n) {
 
     return list;
 }
-
 
 
 
