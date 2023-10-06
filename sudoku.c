@@ -141,19 +141,6 @@ List* get_adj_nodes(Node* n){
   return list;
 }
 
-/*
-List* get_adj_nodes(Node* n) {
-    List* list = createList();
-
-    for (int row = 0; row < 9; row++) {
-        for (int col = 0; col < 9; col++) {
-            if (n->sudo[row][col] == 0) {
-                for (int val = 1; val <= 9; val++) {
-                    Node* newNode = copy(n);
-                    newNode->sudo[row][col] = val;
-
-*/
-
 int is_final(Node* n)
 {
   for(int i = 0; i < 9; i++)
