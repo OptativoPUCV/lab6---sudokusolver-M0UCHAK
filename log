@@ -460,3 +460,18 @@ sudoku.c:167:13: error: implicit declaration of function ‘freeStack’; did yo
 cc1: all warnings being treated as errors
 Compilation failed
 c87c0bb
+Fri 06 Oct 2023 12:45:06 AM UTC: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:
+sudoku.c: In function ‘DFS’:
+sudoku.c:162:25: error: invalid use of void expression
+  162 |         Node* current = (Node*)pop(stack);
+      |                         ^
+sudoku.c:167:13: error: implicit declaration of function ‘freeStack’; did you mean ‘createStack’? [-Werror=implicit-function-declaration]
+  167 |             freeStack(stack);
+      |             ^~~~~~~~~
+      |             createStack
+cc1: all warnings being treated as errors
+Compilation failed
+bc95640
