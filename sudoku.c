@@ -123,14 +123,14 @@ List* get_adj_nodes(Node* n){
   
   List *list = createList();
 
-  for(int i = 0; i < 9; i++){
-    for(int k = 0; k < 9; k++){
+  for(int row = 0; row < 9; row++){
+    for(int col = 0; col < 9; col++){
       
-      if(n->sudo[i][k] == 0){
-        for(int num = 1; num <= 9; num++){
+      if(n->sudo[row][col] == 0){
+        for(int val = 1; val <= 9; num++){
           
           Node *adjNodes = copy(n);
-          adjNodes->sudo[i][k] = num;
+          adjNodes->sudo[row][col] = val;
           if(is_valid(adjNodes)) pushBack(list, adjNodes); 
           
         }          
@@ -140,6 +140,19 @@ List* get_adj_nodes(Node* n){
   }
   return list;
 }
+
+/*
+List* get_adj_nodes(Node* n) {
+    List* list = createList();
+
+    for (int row = 0; row < 9; row++) {
+        for (int col = 0; col < 9; col++) {
+            if (n->sudo[row][col] == 0) {
+                for (int val = 1; val <= 9; val++) {
+                    Node* newNode = copy(n);
+                    newNode->sudo[row][col] = val;
+
+*/
 
 int is_final(Node* n)
 {
@@ -155,36 +168,6 @@ int is_final(Node* n)
 
 
 
-/*
-List* get_adj_nodes(Node* n) {
-    List* list = createList();
-
-    for (int row = 0; row < 9; row++) {
-        for (int col = 0; col < 9; col++) {
-            if (n->sudo[row][col] == 0) {
-                for (int val = 1; val <= 9; val++) {
-                    Node* newNode = copy(n);
-                    newNode->sudo[row][col] = val;
-
-                    //printf("Generando nodo adjacente:\n");
-                    //print_node(newNode); // Imprime el nuevo nodo generado
-
-                    if (is_valid(newNode)) {
-                        printf("Nodo válido. Agregando a la lista.\n");
-                        appendToList(list, newNode);
-                    } else {
-                        printf("Nodo inválido. Liberando memoria.\n");
-                        free(newNode);
-                    }
-                }
-            }
-        }
-    }
-
-    printf("Tamaño de la lista: %d\n", getListSize(list)); // Verifica el tamaño de la lista
-
-    return list;
-}*/
 
 
 
@@ -192,29 +175,7 @@ List* get_adj_nodes(Node* n) {
 
 
 
-/*
-List* get_adj_nodes(Node* n) {
-    List* list = createList();
 
-    for (int row = 0; row < 9; row++) {
-        for (int col = 0; col < 9; col++) {
-            if (n->sudo[row][col] == 0) {
-                for (int val = 1; val <= 9; val++) {
-                    Node* newNode = copy(n);
-                    newNode->sudo[row][col] = val;
-
-                    if (is_valid(newNode)) {
-                        appendToList(list, newNode);
-                    } else {
-                        free(newNode);
-                    }
-                }
-            }
-        }
-    }
-
-    return list;
-}*/
 
 Node* DFS(Node* initial, int* cont){
   return NULL;
