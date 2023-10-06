@@ -289,3 +289,17 @@ sudoku.c:71:17: error: unused variable ‘subgrid_row’ [-Werror=unused-variabl
 cc1: all warnings being treated as errors
 Compilation failed
 ef4237e
+Fri 06 Oct 2023 12:10:49 AM UTC: 
+ sudoku.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+In file included from test.c:5:
+sudoku.c: In function ‘is_valid’:
+sudoku.c:72:17: error: unused variable ‘subgrid_col’ [-Werror=unused-variable]
+   72 |             int subgrid_col = 3 * (col / 3);
+      |                 ^~~~~~~~~~~
+sudoku.c:71:17: error: unused variable ‘subgrid_row’ [-Werror=unused-variable]
+   71 |             int subgrid_row = 3 * (row / 3);
+      |                 ^~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+508e97f
