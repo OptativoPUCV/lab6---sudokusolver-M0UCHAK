@@ -441,3 +441,22 @@ sudoku.c:162:21: error: void value not ignored as it ought to be
       |                     ^~~
 Compilation failed
 5576557
+Fri 06 Oct 2023 12:44:57 AM UTC: 
+ sudoku.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+In file included from test.c:5:
+sudoku.c: In function ‘DFS’:
+sudoku.c:161:11: error: implicit declaration of function ‘isEmpty’; did you mean ‘is_empty’? [-Werror=implicit-function-declaration]
+  161 |   while (!isEmpty(stack)) {
+      |           ^~~~~~~
+      |           is_empty
+sudoku.c:162:25: error: invalid use of void expression
+  162 |         Node* current = (Node*)pop(stack);
+      |                         ^
+sudoku.c:167:13: error: implicit declaration of function ‘freeStack’; did you mean ‘createStack’? [-Werror=implicit-function-declaration]
+  167 |             freeStack(stack);
+      |             ^~~~~~~~~
+      |             createStack
+cc1: all warnings being treated as errors
+Compilation failed
+c87c0bb
