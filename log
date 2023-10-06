@@ -489,3 +489,9 @@ sudoku.c:170:25: error: invalid use of void expression
       |                         ^
 Compilation failed
 fd21081
+Fri 06 Oct 2023 12:49:52 AM UTC: 
+ sudoku.c | 27 +++++++++++++++------------
+ 1 file changed, 15 insertions(+), 12 deletions(-)
+ tests:  10|0
+total_score: 70/70
+e3143b4
