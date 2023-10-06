@@ -132,10 +132,10 @@ int getListSize(List* list) {
 List* get_adj_nodes(Node* n) {
     List* list = createList();
 
-    for (int row = 0; row < 9; row++) {
-        for (int col = 0; col < 9; col++) {
+    for (int row = 0; row < 3; row++) {
+        for (int col = 0; col < 3; col++) {
             if (n->sudo[row][col] == 0) {
-                for (int val = 1; val <= 9; val++) {
+                for (int val = 1; val <= 3; val++) {
                     Node* newNode = copy(n);
                     newNode->sudo[row][col] = val;
 
