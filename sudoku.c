@@ -52,7 +52,6 @@ void print_node(Node* n){
     }
     printf("\n");
 }
-
 int is_valid(Node* n) {
     int used_row[10] = {0};
     int used_col[10] = {0};
@@ -62,14 +61,15 @@ int is_valid(Node* n) {
         for (int col = 0; col < 9; col++) {
             int num = n->sudo[row][col];
 
+            // Verificar fila
             if (used_row[num] == 1) return 0;
             used_row[num] = 1;
 
+            // Verificar columna
             if (used_col[num] == 1) return 0;
             used_col[num] = 1;
 
-            int subgrid_row = 3 * (row / 3);
-            int subgrid_col = 3 * (col / 3);
+            // Verificar submatriz 3x3
             if (used_subgrid[num] == 1) return 0;
             used_subgrid[num] = 1;
         }
@@ -77,6 +77,7 @@ int is_valid(Node* n) {
 
     return 1;
 }
+
 
 
 
