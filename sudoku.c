@@ -54,7 +54,6 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n) {
-    // Verificar filas y columnas
     for (int row = 0; row < 9; row++) {
         int used_row[10] = {0};
         int used_col[10] = {0};
@@ -63,13 +62,11 @@ int is_valid(Node* n) {
             int num_row = n->sudo[row][col];
             int num_col = n->sudo[col][row];
 
-            // Verificar fila
             if (num_row != 0) {
                 if (used_row[num_row] == 1) return 0;
                 used_row[num_row] = 1;
             }
 
-            // Verificar columna
             if (num_col != 0) {
                 if (used_col[num_col] == 1) return 0;
                 used_col[num_col] = 1;
@@ -77,7 +74,6 @@ int is_valid(Node* n) {
         }
     }
 
-    // Verificar submatrices de 3x3
     for (int k = 0; k < 9; k++) {
         int used[10] = {0};
 
@@ -95,51 +91,6 @@ int is_valid(Node* n) {
 
     return 1;
 }
-
-/*
-int is_valid(Node* n){
-
-  for(int row = 0; row < 9;row++){
-    int used[10] = {0};
-    
-    for(int col = 0; col < 9; col++){
-      int num = n -> sudo[row][col];
-      
-      if(num == 0) continue;
-      if(used[num] == 1) return 0;
-      used[num] = 1;
-    }
-  }
-  
-  for(int col = 0; col < 9; col++){
-    int used[10] = {0};
-    
-    for(int row = 0; row < 9; row++){
-      int num = n -> sudo[row][col];
-      
-      if(num == 0) continue;
-      if(used[num] == 1) return 0;
-      used[num] = 1;
-    }
-  }
-
-  for (int startRow = 0; startRow < 9; startRow += 3) {
-    for (int startCol = 0; startCol < 9; startCol += 3) {
-      int used[10] = {0};
-      
-      for (int row = startRow; row < startRow + 3; row++) {
-        for (int col = startCol; col < startCol + 3; col++) {
-          int num = n->sudo[row][col];
-          if (num == 0) continue; 
-          if (used[num] == 1) return 0;
-          used[num] = 1;
-        }
-      }
-    }
-  }
-  return 1;
-}*/
-
 
 void appendToList(List* list, Node* data) {
   
@@ -188,6 +139,31 @@ List* get_adj_nodes(Node* n) {
                     Node* newNode = copy(n);
                     newNode->sudo[row][col] = val;
 
+                    if (is_valid(newNode)) {
+                        appendToList(list, newNode);
+                    } else {
+                        free(newNode);
+                    }
+                }
+            }
+        }
+    }
+
+    return list;
+}
+
+
+/*
+List* get_adj_nodes(Node* n) {
+    List* list = createList();
+
+    for (int row = 0; row < 9; row++) {
+        for (int col = 0; col < 9; col++) {
+            if (n->sudo[row][col] == 0) {
+                for (int val = 1; val <= 9; val++) {
+                    Node* newNode = copy(n);
+                    newNode->sudo[row][col] = val;
+
                     //printf("Generando nodo adjacente:\n");
                     //print_node(newNode); // Imprime el nuevo nodo generado
 
@@ -206,7 +182,7 @@ List* get_adj_nodes(Node* n) {
     printf("Tamaño de la lista: %d\n", getListSize(list)); // Verifica el tamaño de la lista
 
     return list;
-}
+}*/
 
 
 
